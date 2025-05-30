@@ -1,0 +1,15 @@
+meta {
+  name: CategoriesAll
+  type: http
+  seq: 1
+}
+
+get {
+  url: http://localhost:8800/api/category
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{token}}
+}
