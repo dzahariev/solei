@@ -1,0 +1,15 @@
+meta {
+  name: OrderDelete
+  type: http
+  seq: 4
+}
+
+delete {
+  url: http://localhost:8800/api/order/fa4544fa-69fa-4091-9f62-036287758daa
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{token}}
+}

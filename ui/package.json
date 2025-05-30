@@ -1,0 +1,14 @@
+{
+  "name": "solei",
+  "private": true,
+  "version": "1.0.0",
+  "author": "dzahariev",
+  "description": "Domo",
+  "scripts": {
+    "start": "ui5 serve --accept-remote-connections --port 8801",
+    "build": "ui5 build preload --clean-dest --include-all-dependencies"
+  },
+  "devDependencies": {
+    "@ui5/cli": "^4.0.0"
+  }
+}

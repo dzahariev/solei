@@ -1,0 +1,22 @@
+meta {
+  name: CategoryCreate
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8800/api/category
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{token}}
+}
+
+body:json {
+      {
+        "name": "Sofia"
+      }
+  
+}

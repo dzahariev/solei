@@ -1,0 +1,17 @@
+meta {
+  name: Introspect
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://keycloak:8086/realms/solei/protocol/openid-connect/token/introspect
+  body: formUrlEncoded
+  auth: none
+}
+
+body:form-urlencoded {
+  client_id: solei-backend-client
+  client_secret: 775df81b-170e-4900-8f2d-de46d801606c
+  token: {{token}}
+}

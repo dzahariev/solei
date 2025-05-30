@@ -1,0 +1,46 @@
+{
+	"selectedKey": "home",
+
+	"navigation": [
+		{
+			"titleI18nKey": "sideContentHome",
+			"icon": "sap-icon://home",
+			"expanded": true,
+			"key": "home",
+			"items": []
+		},
+		{
+			"titleI18nKey": "sideContentOwners",
+			"icon": "sap-icon://supplier",
+			"expanded": false,
+			"key": "owners",
+			"items": []
+		},
+		{
+			"titleI18nKey": "sideContentTenants",
+			"icon": "sap-icon://education",
+			"expanded": false,
+			"key": "tenants",
+			"items": []
+		},
+		{
+			"titleI18nKey": "sideContentProperties",
+			"icon": "sap-icon://shelf",
+			"expanded": false,
+			"key": "properties",
+			"items": []
+		}
+	],
+	"fixedNavigation": [
+		{
+			"titleI18nKey": "sideContentImportantLinks",
+			"icon": "sap-icon://chain-link",
+			"key": "importantLinks"
+		},
+		{
+			"titleI18nKey": "sideContentLegal",
+			"icon": "sap-icon://compare",
+			"key": "legal"
+		}
+	]
+}

@@ -1,0 +1,132 @@
+{
+	"_version": "1.21.0",
+	"sap.app": {
+		"id": "com.zahariev.solei",
+		"type": "application",
+		"i18n": {
+			"bundleUrl": "i18n/i18n.properties",
+			"fallbackLocale": "en",
+			"supportedLocales": ["en"]
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"applicationVersion": {
+			"version": "1.0.0"
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "com.zahariev.solei.view.App",
+			"type": "XML",
+			"id": "app"
+		},
+		"dependencies": {
+			"minUI5Version": "1.120.1",
+			"libs": {
+				"sap.m": {},
+				"sap.suite.ui.microchart": {
+					"lazy": true
+				},
+				"sap.tnt": {},
+				"sap.ui.core": {},
+				"sap.ui.layout": {},
+				"sap.uxap": {}
+			}
+		},
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleUrl": "i18n/i18n.properties",
+					"async": true,
+					"fallbackLocale": "en",
+					"supportedLocales": ["en"]
+				}
+			},
+			"side": {
+				"type": "sap.ui.model.json.JSONModel",
+				"uri": "model/sideContent.json"
+			}
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"homeRoute": "home", 
+				"controlId": "mainContents",
+				"viewType": "XML",
+				"controlAggregation": "pages",
+				"viewPath": "com.zahariev.solei.view"
+			},
+			"routes": [
+				{
+					"pattern": "home",
+					"name": "home",
+					"target": "home"
+				},
+				{
+					"pattern": "tenants",
+					"name": "tenants",
+					"target": "tenants"
+				},
+				{
+					"pattern": "owners",
+					"name": "owners",
+					"target": "owners"
+				},
+				{
+					"pattern": "properties",
+					"name": "properties",
+					"target": "properties"
+				},
+				{
+					"pattern": "ImportantLinks",
+					"name": "importantLinks",
+					"target": "importantLinks"
+				},
+				{
+					"pattern": "Legal",
+					"name": "legal",
+					"target": "legal"
+				}
+			],
+			"targets": {
+				"home": {
+					"viewId": "home",
+					"viewName": "Home"
+				},
+				"tenants": {
+					"viewId": "tenants",
+					"viewName": "Tenants"
+				},
+				"owners": {
+					"viewId": "owners",
+					"viewName": "Owners"
+				},
+				"properties": {
+					"viewId": "properties",
+					"viewName": "Properties"
+				},
+				"importantLinks": {
+					"viewId": "importantLinks",
+					"viewName": "ImportantLinks"
+				},
+				"legal": {
+					"viewId": "legal",
+					"viewName": "Legal"
+				}
+			}
+		}
+	}
+}

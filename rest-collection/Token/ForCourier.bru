@@ -1,0 +1,22 @@
+meta {
+  name: ForCourier
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://keycloak:8086/realms/solei/protocol/openid-connect/token
+  body: formUrlEncoded
+  auth: none
+}
+
+body:form-urlencoded {
+  client_id: admin-cli
+  username: courier
+  password: courier
+  grant_type: password
+}
+
+script:post-response {
+  bru.setVar("token", res.body.access_token);
+}
