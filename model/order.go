@@ -1,18 +1,20 @@
 package model
 
 import (
+	"context"
 	"fmt"
 
+	"github.com/dzahariev/respite/basemodel"
 	"github.com/gofrs/uuid/v5"
 )
 
 // Order
 type Order struct {
-	Base
+	basemodel.Base
 	Price  float32   `json:"price"`
 	Status string    `json:"status"`
 	UserID uuid.UUID `json:"user_id"`
-	User   User
+	User   basemodel.User
 }
 
 func (o *Order) ResourceName() string {
@@ -28,7 +30,7 @@ func (o *Order) Preloads() []string {
 }
 
 // Validate checks structure consistency
-func (o *Order) Validate() error {
+func (o *Order) Validate(ctx context.Context) error {
 	if o.Price == 0 {
 		return fmt.Errorf("required Price")
 	}
@@ -36,8 +38,8 @@ func (o *Order) Validate() error {
 	return nil
 }
 
-func (o *Order) Prepare() error {
-	err := o.BasePrepare()
+func (o *Order) Prepare(ctx context.Context) error {
+	err := o.BasePrepare(ctx)
 	if err != nil {
 		return err
 	}

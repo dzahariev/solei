@@ -1,16 +1,18 @@
 package model
 
 import (
+	"context"
 	"fmt"
 	"html"
 	"strings"
 
+	"github.com/dzahariev/respite/basemodel"
 	"github.com/gofrs/uuid/v5"
 )
 
 // Meal
 type Meal struct {
-	Base
+	basemodel.Base
 	Name        string    `json:"name"`
 	Description string    `json:"description"`
 	Cost        float32   `json:"cost"`
@@ -27,7 +29,7 @@ func (t *Meal) Preloads() []string {
 }
 
 // Validate checks structure consistency
-func (t *Meal) Validate() error {
+func (t *Meal) Validate(ctx context.Context) error {
 	if t.Name == "" {
 		return fmt.Errorf("required Name")
 	}
@@ -41,8 +43,8 @@ func (t *Meal) Validate() error {
 	return nil
 }
 
-func (t *Meal) Prepare() error {
-	err := t.BasePrepare()
+func (t *Meal) Prepare(ctx context.Context) error {
+	err := t.BasePrepare(ctx)
 	if err != nil {
 		return err
 	}

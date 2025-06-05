@@ -1,36 +1,87 @@
 package main
 
 import (
+	"context"
 	"log"
-	"os"
 
-	"github.com/dzahariev/solei/api/controller"
-	"github.com/joho/godotenv"
+	"github.com/dzahariev/respite/api"
+	"github.com/dzahariev/respite/auth"
+	"github.com/dzahariev/respite/basemodel"
+	"github.com/dzahariev/respite/cfg"
+	"github.com/dzahariev/solei/model"
+	"github.com/sethvargo/go-envconfig"
 )
 
-var server = controller.Server{}
-
 func main() {
-	if err := godotenv.Load(); err != nil {
-		log.Println(".env file not loaded due to:", err)
+	ctx := context.Background()
+
+	var loggerCfg cfg.Logger
+	if err := envconfig.Process(ctx, &loggerCfg); err != nil {
+		log.Fatal(err)
 	}
 
-	// Auth configuration
-	authURL := os.Getenv("AUTH_URL")
-	authRealm := os.Getenv("AUTH_REALM")
-	authClientID := os.Getenv("AUTH_CLIENT_ID")
-	authClientSecret := os.Getenv("AUTH_CLIENT_SECRET")
+	var databaseCfg cfg.DataBase
+	if err := envconfig.Process(ctx, &databaseCfg); err != nil {
+		log.Fatal(err)
+	}
 
-	// Role to Permissions map in YAML format
-	roleToPermissionsYaml := os.Getenv("PERMISSIONS_YAML")
+	var serverCfg cfg.Server
+	if err := envconfig.Process(ctx, &serverCfg); err != nil {
+		log.Fatal(err)
+	}
 
-	// DB configuration
-	dbUser := os.Getenv("POSTGRES_USER")
-	dbPassword := os.Getenv("POSTGRES_PASSWORD")
-	dbPort := os.Getenv("POSTGRES_PORT")
-	dbHost := os.Getenv("POSTGRES_HOST")
-	dbName := os.Getenv("POSTGRES_DB")
+	var authCfg cfg.Keycloak
+	if err := envconfig.Process(ctx, &authCfg); err != nil {
+		log.Fatal(err)
+	}
 
-	server.Initialize(dbUser, dbPassword, dbPort, dbHost, dbName, authURL, authRealm, authClientID, authClientSecret, roleToPermissionsYaml)
-	server.Run(":8800")
+	objects := []basemodel.Object{
+		&model.Category{},
+		&model.Meal{},
+		&model.Order{},
+		&model.OrderItem{},
+	}
+
+	rolesToPermissions := map[string][]string{
+		"Customer": {
+			"user.read",
+			"address.read",
+			"address.write",
+			"meal.read",
+			"category.read",
+			"order.read",
+			"order.write",
+			"orderitem.read",
+			"orderitem.write",
+		},
+		"Chef": {
+			"user.read",
+			"orderitem.global",
+			"orderitem.read",
+			"orderitem.write",
+		},
+		"Courier": {
+			"user.read",
+			"order.global",
+			"order.read",
+			"order.write",
+		},
+		"Owner": {
+			"user.read",
+			"meal.read",
+			"meal.write",
+			"category.read",
+			"category.write",
+			"order.global",
+			"order.read",
+			"orderitem.global",
+			"orderitem.read",
+		},
+	}
+	authClient := auth.NewClient(authCfg)
+	server, err := api.NewServer(serverCfg, loggerCfg, databaseCfg, objects, authClient, rolesToPermissions)
+	if err != nil {
+		log.Fatal(err)
+	}
+	server.Run()
 }

@@ -1,14 +1,17 @@
 package model
 
 import (
+	"context"
 	"fmt"
 	"html"
 	"strings"
+
+	"github.com/dzahariev/respite/basemodel"
 )
 
 // Category
 type Category struct {
-	Base
+	basemodel.Base
 	Name string `json:"name"`
 }
 
@@ -21,7 +24,7 @@ func (t *Category) IsGlobal() bool {
 }
 
 // Validate checks structure consistency
-func (t *Category) Validate() error {
+func (t *Category) Validate(ctx context.Context) error {
 	if t.Name == "" {
 		return fmt.Errorf("required Name")
 	}
@@ -29,8 +32,8 @@ func (t *Category) Validate() error {
 	return nil
 }
 
-func (t *Category) Prepare() error {
-	err := t.BasePrepare()
+func (t *Category) Prepare(ctx context.Context) error {
+	err := t.BasePrepare(ctx)
 	if err != nil {
 		return err
 	}

@@ -1,16 +1,18 @@
 package model
 
 import (
+	"context"
 	"fmt"
 	"html"
 	"strings"
 
+	"github.com/dzahariev/respite/basemodel"
 	"github.com/gofrs/uuid/v5"
 )
 
 // OrderItem
 type OrderItem struct {
-	Base
+	basemodel.Base
 	Amount  int       `json:"amount"`
 	Comment string    `json:"comment"`
 	MealID  uuid.UUID `json:"meal_id"`
@@ -18,7 +20,7 @@ type OrderItem struct {
 	OrderID uuid.UUID `json:"order_id"`
 	Order   Order
 	UserID  uuid.UUID `json:"user_id"`
-	User    User
+	User    basemodel.User
 }
 
 func (o *OrderItem) ResourceName() string {
@@ -34,7 +36,7 @@ func (o *OrderItem) Preloads() []string {
 }
 
 // Validate checks structure consistency
-func (o *OrderItem) Validate() error {
+func (o *OrderItem) Validate(ctx context.Context) error {
 	if o.Amount == 0 {
 		return fmt.Errorf("required Amount")
 	}
@@ -42,8 +44,8 @@ func (o *OrderItem) Validate() error {
 	return nil
 }
 
-func (o *OrderItem) Prepare() error {
-	err := o.BasePrepare()
+func (o *OrderItem) Prepare(ctx context.Context) error {
+	err := o.BasePrepare(ctx)
 	if err != nil {
 		return err
 	}

@@ -18,7 +18,8 @@ INSERT INTO public.meals (id, name, description, cost, category_id) VALUES
     ('761c7614-54c1-47d6-afa1-7f678b633955', 'Chocolate Mousse', 'Rich and creamy chocolate mousse topped with whipped cream.', '12.40','07509e26-8b5a-4e22-af32-1f85af73e8a0');
 
 INSERT INTO public.orders (id, price, status, user_id) VALUES
-    ('6ec514e1-9111-4ac6-a327-f3421522f363', '5.10', 'DRAFT','e2e7eb01-e704-4435-ab4e-93805b7593ed');
+    ('6ec514e1-9111-4ac6-a327-f3421522f363', '5.10', 'DRAFT','e2e7eb01-e704-4435-ab4e-93805b7593ed'),
+    ('b865e580-4e16-4159-a09d-2457e04a0b6c', '32.00', 'DRAFT','74b19236-2243-4b2a-a71f-d24d5fa4c58a');
 
 INSERT INTO public.orderitems (id, amount, comment, meal_id, order_id, user_id) VALUES
     ('83eb039f-cc0a-4c31-9441-4f006cd5237e', '1', 'Less Mayo please!','d98e2eba-e21b-4f6b-a599-60ab1c4c7237', '6ec514e1-9111-4ac6-a327-f3421522f363','e2e7eb01-e704-4435-ab4e-93805b7593ed');
