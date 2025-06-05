@@ -53,22 +53,18 @@ do
 done
 set -- "${POSITIONAL[@]}" 
 
+set -a
+. ./.env
+set +a
+
 POSTGRES_CONTAINER="solei-db"
-POSTGRES_HOST="localhost"
-POSTGRES_PORT="5432" 
-POSTGRES_DB="postgres"
-POSTGRES_USER="postgres"
-POSTGRES_PASSWORD="postgres"
-POSTGRES_SSL="disable"
 POSTGRES_VERSION="17-alpine"
 
 KEYCLOAK_CONTAINER="solei-keycloak"
-KEYCLOAK_PORT="8086"
-KEYCLOAK_ADMIN="admin"
-KEYCLOAK_ADMIN_PASSWORD="admin"
 KEYCLOAK_VERSION="26.2.3"
+KEYCLOAK_PORT="8086"
 
-CONNECTION_STRING="postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}?sslmode=${POSTGRES_SSL}"
+CONNECTION_STRING="postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}?sslmode=disable"
 
 function clean() {
 
@@ -103,12 +99,12 @@ else
     set +e
     echo "Create DB container ${POSTGRES_CONTAINER} ..."
     docker run -d --name ${POSTGRES_CONTAINER} \
-                -e POSTGRES_HOST=${POSTGRES_HOST} \
-                -e POSTGRES_PORT=${POSTGRES_PORT} \
-                -e POSTGRES_DB=${POSTGRES_DB} \
-                -e POSTGRES_USER=${POSTGRES_USER} \
-                -e POSTGRES_PASSWORD=${POSTGRES_PASSWORD} \
-                -p ${POSTGRES_PORT}:${POSTGRES_PORT} \
+                -e POSTGRES_HOST=${DB_HOST} \
+                -e POSTGRES_PORT=${DB_PORT} \
+                -e POSTGRES_DB=${DB_NAME} \
+                -e POSTGRES_USER=${DB_USER} \
+                -e POSTGRES_PASSWORD=${DB_PASSWORD} \
+                -p ${DB_PORT}:${DB_PORT} \
                 postgres:${POSTGRES_VERSION}
 
     if [[ $? -ne 0 ]] ; then
@@ -119,7 +115,7 @@ else
     echo "Waiting for DB to start ..."
     for i in {1..10}
     do
-        docker exec ${POSTGRES_CONTAINER} pg_isready -U "${POSTGRES_USER}" -h "${POSTGRES_HOST}" -p "${POSTGRES_PORT}" -d "${POSTGRES_DB}"
+        docker exec ${POSTGRES_CONTAINER} pg_isready -U "${DB_USER}" -h "${DB_HOST}" -p "${DB_PORT}" -d "${DB_NAME}"
         if [ $? -eq 0 ]
         then
             DB_STARTED=true
@@ -139,7 +135,7 @@ else
 
     echo "Load initial content ..."
     ls -d ${ROOT_PATH}/db/init/* | sort | xargs -I {} cat {} |\
-        docker exec -i ${POSTGRES_CONTAINER} psql -U "${POSTGRES_USER}" -h "${POSTGRES_HOST}" -p "${POSTGRES_PORT}" -d "${POSTGRES_DB}"
+        docker exec -i ${POSTGRES_CONTAINER} psql -U "${DB_USER}" -h "${DB_HOST}" -p "${DB_PORT}" -d "${DB_NAME}"
 fi
 
 echo "Migration version: $(migrate -path ${ROOT_PATH}/db/migrations -database "${CONNECTION_STRING}" version 2>&1)"
@@ -186,11 +182,6 @@ else
 fi 
 
 echo "Starting application ..."
-
-set -a
-. ./.env
-export PERMISSIONS_YAML=$(cat ${ROOT_PATH}/permissions.yaml)
-set +a
 
 if [[ ${DEBUG} == true ]]; then
     echo "Debug enabled on port ${DEBUG_PORT}"

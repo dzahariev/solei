@@ -1,22 +1,24 @@
 package model
 
 import (
+	"context"
 	"fmt"
 	"html"
 	"strings"
 
+	"github.com/dzahariev/respite/basemodel"
 	"github.com/gofrs/uuid/v5"
 )
 
 // Address
 type Address struct {
-	Base
+	basemodel.Base
 	Country string    `json:"country"`
 	City    string    `json:"city"`
 	Street  string    `json:"street"`
 	Phone   string    `json:"phone"`
 	UserID  uuid.UUID `json:"user_id"`
-	User    User
+	User    basemodel.User
 }
 
 func (t *Address) ResourceName() string {
@@ -32,7 +34,7 @@ func (t *Address) Preloads() []string {
 }
 
 // Validate checks structure consistency
-func (t *Address) Validate() error {
+func (t *Address) Validate(ctx context.Context) error {
 	if t.Country == "" {
 		return fmt.Errorf("required Country")
 	}
@@ -49,8 +51,8 @@ func (t *Address) Validate() error {
 	return nil
 }
 
-func (t *Address) Prepare() error {
-	err := t.BasePrepare()
+func (t *Address) Prepare(ctx context.Context) error {
+	err := t.BasePrepare(ctx)
 	if err != nil {
 		return err
 	}
