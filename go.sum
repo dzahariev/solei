@@ -5,6 +5,8 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/dzahariev/respite v0.0.0-20250605153134-7b2aa62a4115 h1:JXiH6vyyPW6wIyzGWVKoxTqRErzjZKbj75ajxEFVSV0=
 github.com/dzahariev/respite v0.0.0-20250605153134-7b2aa62a4115/go.mod h1:azUvdxs16P3vvKDfM5stbvnOrdhEgKERrJHn30wYW7c=
+github.com/dzahariev/respite v0.0.0-20250606145707-33f11158c725 h1:XZRmsZGvl8REsrrXEx3HEx2GoPfWD5Q76gGPX/va0f8=
+github.com/dzahariev/respite v0.0.0-20250606145707-33f11158c725/go.mod h1:azUvdxs16P3vvKDfM5stbvnOrdhEgKERrJHn30wYW7c=
 github.com/go-resty/resty/v2 v2.7.0 h1:me+K9p3uhSmXtrBZ4k9jcEAfJmuC8IivWHwaLZwPrFY=
 github.com/go-resty/resty/v2 v2.7.0/go.mod h1:9PWDzw47qPphMRFfhsyk0NnSgvluHcljSMVIq3w7q0I=
 github.com/gofrs/uuid/v5 v5.3.2 h1:2jfO8j3XgSwlz/wHqemAEugfnTlikAYHhnqQ8Xh4fE0=

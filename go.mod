@@ -3,7 +3,7 @@ module github.com/dzahariev/solei
 go 1.24.1
 
 require (
-	github.com/dzahariev/respite v0.0.0-20250605153134-7b2aa62a4115
+	github.com/dzahariev/respite v0.0.0-20250606145707-33f11158c725
 	github.com/gofrs/uuid/v5 v5.3.2
 	github.com/sethvargo/go-envconfig v1.3.0
 )

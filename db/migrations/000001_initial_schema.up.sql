@@ -1,6 +1,6 @@
 BEGIN;
 
--- Funciton that sets created_at field
+-- Function that sets created_at field
 CREATE OR REPLACE FUNCTION set_created_at()
     RETURNS TRIGGER
 AS
@@ -11,7 +11,7 @@ BEGIN
 END
 $$ LANGUAGE plpgsql;
 
--- Funciton that sets updated_at field
+-- Function that sets updated_at field
 CREATE OR REPLACE FUNCTION set_updated_at()
     RETURNS TRIGGER
 AS
