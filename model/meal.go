@@ -6,13 +6,13 @@ import (
 	"html"
 	"strings"
 
-	"github.com/dzahariev/respite/basemodel"
+	"github.com/dzahariev/respite/domain"
 	"github.com/gofrs/uuid/v5"
 )
 
-// Meal
+// Meal represent meal
 type Meal struct {
-	basemodel.Base
+	domain.Base
 	Name        string    `json:"name"`
 	Description string    `json:"description"`
 	Cost        float32   `json:"cost"`

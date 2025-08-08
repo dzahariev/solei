@@ -4,17 +4,17 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/dzahariev/respite/basemodel"
+	"github.com/dzahariev/respite/domain"
 	"github.com/gofrs/uuid/v5"
 )
 
-// Order
+// Order represent order
 type Order struct {
-	basemodel.Base
+	domain.Base
 	Price  float32   `json:"price"`
 	Status string    `json:"status"`
 	UserID uuid.UUID `json:"user_id"`
-	User   basemodel.User
+	User   domain.User
 }
 
 func (o *Order) ResourceName() string {

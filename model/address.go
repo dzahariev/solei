@@ -6,19 +6,19 @@ import (
 	"html"
 	"strings"
 
-	"github.com/dzahariev/respite/basemodel"
+	"github.com/dzahariev/respite/domain"
 	"github.com/gofrs/uuid/v5"
 )
 
-// Address
+// Address represent address
 type Address struct {
-	basemodel.Base
+	domain.Base
 	Country string    `json:"country"`
 	City    string    `json:"city"`
 	Street  string    `json:"street"`
 	Phone   string    `json:"phone"`
 	UserID  uuid.UUID `json:"user_id"`
-	User    basemodel.User
+	User    domain.User
 }
 
 func (t *Address) ResourceName() string {

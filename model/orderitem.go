@@ -6,13 +6,13 @@ import (
 	"html"
 	"strings"
 
-	"github.com/dzahariev/respite/basemodel"
+	"github.com/dzahariev/respite/domain"
 	"github.com/gofrs/uuid/v5"
 )
 
-// OrderItem
+// OrderItem represent order item
 type OrderItem struct {
-	basemodel.Base
+	domain.Base
 	Amount  int       `json:"amount"`
 	Comment string    `json:"comment"`
 	MealID  uuid.UUID `json:"meal_id"`
@@ -20,7 +20,7 @@ type OrderItem struct {
 	OrderID uuid.UUID `json:"order_id"`
 	Order   Order
 	UserID  uuid.UUID `json:"user_id"`
-	User    basemodel.User
+	User    domain.User
 }
 
 func (o *OrderItem) ResourceName() string {

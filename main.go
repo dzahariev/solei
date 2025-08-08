@@ -6,8 +6,8 @@ import (
 
 	"github.com/dzahariev/respite/api"
 	"github.com/dzahariev/respite/auth"
-	"github.com/dzahariev/respite/basemodel"
 	"github.com/dzahariev/respite/cfg"
+	"github.com/dzahariev/respite/domain"
 	"github.com/dzahariev/solei/model"
 	"github.com/sethvargo/go-envconfig"
 )
@@ -35,7 +35,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	objects := []basemodel.Object{
+	objects := []domain.Object{
 		&model.Category{},
 		&model.Meal{},
 		&model.Order{},

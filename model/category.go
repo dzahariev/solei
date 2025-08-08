@@ -6,12 +6,12 @@ import (
 	"html"
 	"strings"
 
-	"github.com/dzahariev/respite/basemodel"
+	"github.com/dzahariev/respite/domain"
 )
 
-// Category
+// Category represent category
 type Category struct {
-	basemodel.Base
+	domain.Base
 	Name string `json:"name"`
 }
 
