@@ -3,8 +3,8 @@ github.com/Nerzal/gocloak/v13 v13.9.0/go.mod h1:YYuDcXZ7K2zKECyVP7pPqjKxx2AzYSpK
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/dzahariev/respite v0.1.1 h1:hkyAccJddm6/HYROG8SGCGynS0X7a+IqosrkU7d0eZ8=
-github.com/dzahariev/respite v0.1.1/go.mod h1:5KHjMsClIps90lYgjynuQ+MArZFH/G5s1z4B6BR10Tk=
+github.com/dzahariev/respite v0.1.2 h1:uMLMEidqpwpAYllzaGnJRert4vlBKZ9j2QsvK1WinUc=
+github.com/dzahariev/respite v0.1.2/go.mod h1:5KHjMsClIps90lYgjynuQ+MArZFH/G5s1z4B6BR10Tk=
 github.com/go-resty/resty/v2 v2.7.0 h1:me+K9p3uhSmXtrBZ4k9jcEAfJmuC8IivWHwaLZwPrFY=
 github.com/go-resty/resty/v2 v2.7.0/go.mod h1:9PWDzw47qPphMRFfhsyk0NnSgvluHcljSMVIq3w7q0I=
 github.com/gofrs/uuid/v5 v5.3.2 h1:2jfO8j3XgSwlz/wHqemAEugfnTlikAYHhnqQ8Xh4fE0=
