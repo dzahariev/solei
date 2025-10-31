@@ -4,7 +4,7 @@ go 1.24.1
 
 require (
 	github.com/dzahariev/respite v0.1.2
-	github.com/gofrs/uuid/v5 v5.3.2
+	github.com/gofrs/uuid/v5 v5.4.0
 	github.com/sethvargo/go-envconfig v1.3.0
 )
 
