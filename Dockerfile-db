@@ -1,2 +1,2 @@
-FROM migrate/migrate:v4.19.0 AS release
+FROM migrate/migrate:v4.19.1 AS release
 COPY ./db/migrations /db/migrations
