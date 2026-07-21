@@ -5,7 +5,7 @@ go 1.25
 require (
 	github.com/dzahariev/respite v0.1.2
 	github.com/gofrs/uuid/v5 v5.4.0
-	github.com/sethvargo/go-envconfig v1.4.2
+	github.com/sethvargo/go-envconfig v1.4.3
 )
 
 require (
