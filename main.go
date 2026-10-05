@@ -9,7 +9,7 @@ import (
 	"github.com/dzahariev/respite/cfg"
 	"github.com/dzahariev/respite/domain"
 	"github.com/dzahariev/solei/model"
-	"github.com/sethvargo/go-envconfig"
+	"github.com/sethvargo/go-envconfig/v2"
 )
 
 func main() {
